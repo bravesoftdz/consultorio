@@ -46,15 +46,13 @@ const health = [
 ]
 
 
-const Health = ({ match }) => {
+const Health = ({ }) => {
 
     const [presentation, setPresentation] = useState(true)
     useEffect(() => {
         setPresentation(true)
     },[])
 
-    let path = match.url
-    console.log(presentation)
     return (
         <Fragment>
             <Header />

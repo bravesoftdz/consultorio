@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "homepage": "http://consultorioempresarial.pe",
   "private": true,
   "engine": {
     "node": "v12.18.4",

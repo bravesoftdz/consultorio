@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useHistory, Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { editClient } from '../redux/actions/client'
 import { setAlert } from '../redux/actions/alert'
 import { useDispatch, useSelector } from 'react-redux'
@@ -154,7 +154,7 @@ const ImageUpload = ({ uploadingImage, imageUrl, handleImageSelected, image }) =
             <>
                 <p>Cargando</p>
                 <div className="thumbail">
-                    <img src={require('../images/loading.gif')} />
+                    <img src={require('../images/loading.gif')} alt="imagen" />
                 </div>
             </>
         )
@@ -163,7 +163,7 @@ const ImageUpload = ({ uploadingImage, imageUrl, handleImageSelected, image }) =
             <>
                 <label>Cambia de imagen</label>
                 <div className="thumbail">
-                    <img src={imageUrl} />
+                    <img src={imageUrl} alt="imagen" />
                     <input type="file" onChange={handleImageSelected} className="hidden" name="image" />
                 </div>
             </>
@@ -177,14 +177,14 @@ const ImageUpload = ({ uploadingImage, imageUrl, handleImageSelected, image }) =
                             <>
                             <label>Elije una nueva imagen</label>
                             <div className="thumbail">
-                                <img src={image} />
+                                <img src={image} alt="imagen" />
                                 <input type="file" onChange={handleImageSelected} className="hidden" name="image" />
                             </div>
                             </> :
                             <>
                             <label>Elije una nueva imagen</label>
                             <div className="thumbail">
-                                <img src={require('../images/upload.jpg')} />
+                                <img src={require('../images/upload.jpg')} alt="imagen" />
                                 <input type="file" onChange={handleImageSelected} className="hidden" name="image" />
                             </div>
                             </>

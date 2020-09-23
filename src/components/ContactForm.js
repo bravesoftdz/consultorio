@@ -11,13 +11,6 @@ const ContactForm = () => {
 
     const { register, handleSubmit, errors } = useForm()
 
-    const [sendGmail, setSendGmail] = useState({
-        user: '',
-        phone: '',
-        email: '',
-        message: ''
-    })
-
     const sendMessage = async (body, e) => {
         e.preventDefault();
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useHistory, Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { createBanner } from '../redux/actions/banner'
 import { setAlert } from '../redux/actions/alert'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Alert from '../components/Alert'
 
@@ -131,7 +131,7 @@ const ImageUpload = ({ uploadingImage, imageUrl, handleImageSelected }) => {
             <>
                 <p>Cargando</p>
                 <div className="thumbail">
-                    <img src={require('../images/loading.gif')} />
+                    <img src={require('../images/loading.gif')} alt="imagen" />
                 </div>
             </>
         )
@@ -140,7 +140,7 @@ const ImageUpload = ({ uploadingImage, imageUrl, handleImageSelected }) => {
             <>
                 <label>Cambia de imagen</label>
                 <div className="thumbail">
-                    <img src={imageUrl} />
+                    <img src={imageUrl} alt="imagen" />
                     <input type="file" onChange={handleImageSelected} className="hidden" name="image" />
                 </div>
             </>
@@ -150,7 +150,7 @@ const ImageUpload = ({ uploadingImage, imageUrl, handleImageSelected }) => {
             <>
                 <label>Elije una imagen</label>
                 <div className="thumbail">
-                    <img src={require('../images/upload.jpg')} />
+                    <img src={require('../images/upload.jpg')} alt="imagen" />
                     <input type="file" onChange={handleImageSelected} className="hidden" name="image" />
                 </div>
             </>

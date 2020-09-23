@@ -10,7 +10,6 @@ import Consultory from './views/Consultory';
 import Trainings from './views/Trainings'
 import Health from './views/Health';
 import Contact from './views/Contact';
-import NotFound from './views/NotFound'
 
 // Redux
 import { Provider } from 'react-redux'

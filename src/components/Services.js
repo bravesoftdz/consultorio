@@ -7,12 +7,12 @@ import Presentation from './Presentation';
 
 const Services = () => {
 
-    // const clients = useSelector((state) => state.clients.clients)
-    // const dispatch = useDispatch()
-
-    // useEffect(() => {
-    //     dispatch(getClients());
-    // }, [])
+    const clients = useSelector((state) => state.clients.clients)
+    const dispatch = useDispatch()
+    
+    useEffect(() => {
+        dispatch(getClients());
+    }, [])
 
     const settingsClients = {
         dots: false,
@@ -58,19 +58,19 @@ const Services = () => {
                 <div className="Row__Services">
                     <div className="Service">
                         <Link to="/servicios/consultoría">
-                            <img src={require('../images/service1.png')} alt="" />
+                            <img src={require('../images/service1.png')} alt="imagen" />
                             <p>ASESORIA Y CONSULTORIA PARA SERVICIOS DE SALUD</p>
                         </Link>
                     </div>
                     <div className="Service">
                         <Link to="/servicios/asesoría-consultoría-sistemas-de-salud-ocupacional">
-                            <img src={require('../images/service2.png')} alt="" />
+                            <img src={require('../images/service2.png')} alt="imagen" />
                             <p>ASESORIA Y CONSULTORIA en sistemas de gestión de salud ocupacional</p>
                         </Link>
                     </div>
                     <div className="Service">
                         <Link to="/servicios/capacitaciones">
-                            <img src={require('../images/service3.png')} alt="" />
+                            <img src={require('../images/service3.png')} alt="imagen" />
                             <p>Capacitaciones</p>
                         </Link>
                     </div>
@@ -81,7 +81,7 @@ const Services = () => {
                 <h2>Beneficios para tu empresa</h2>
                 <div className="Container">
                     <div className="Img__Container">
-                        <img src={require('../images/beneficios.png')} alt="" />
+                        <img src={require('../images/beneficios.png')} alt="imagen" />
                     </div>
                     <div className="Info__Container Benef">
                         <p>
@@ -95,7 +95,7 @@ const Services = () => {
                 <h2>Confian en nosotros</h2>
                 <div className="Relative Background" style={{ paddingTop: "340px" }}>
                     <Slider {...settingsClients} className="Clients__Slider">
-                        {/* {
+                        {
                             clients.map(client => (
 
                                 <div className="Image__Client" key={client._id}>
@@ -103,22 +103,7 @@ const Services = () => {
                                 </div>
 
                             ))
-                        } */}
-                        <div className="Image__Client">
-                            <img src={require('../images/cliente1.png')} style={{ outline: "none" }} />
-                        </div>
-                        <div className="Image__Client">
-                            <img src={require('../images/cliente2.png')} style={{ outline: "none" }} />
-                        </div>
-                        <div className="Image__Client">
-                            <img src={require('../images/cliente3.png')} style={{ outline: "none" }} />
-                        </div>
-                        <div className="Image__Client">
-                            <img src={require('../images/cliente4.png')} style={{ outline: "none" }} />
-                        </div>
-                        <div className="Image__Client">
-                            <img src={require('../images/cliente5.png')} style={{ outline: "none" }} />
-                        </div>
+                        }
                     </Slider>
                 </div>
             </section>

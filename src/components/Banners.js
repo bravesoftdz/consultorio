@@ -5,12 +5,12 @@ import Slider from "react-slick";
 
 const Banners = () => {
 
-    // const banners = useSelector((state) => state.banners.banners)
-    // const dispatch = useDispatch()
+    const banners = useSelector((state) => state.banners.banners)
+    const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(getBanners());
-    // }, [])
+    useEffect(() => {
+        dispatch(getBanners());
+    }, [])
 
     const settings = {
         dots: true,
@@ -25,35 +25,16 @@ const Banners = () => {
 
     return (
         <Slider {...settings}>
-            {/* {
+            {
                 banners.map(banner => (
                     <div style={{ width: "100%", height: 'auto' }} key={banner._id}>
                         <div className="Banner" >
-                            <img src={banner.image} />
+                            <img src={banner.image} alt="imagen" />
                             <p>{banner.title}</p>
                         </div>
                     </div>
                 ))
-            } */}
-            <div style={{ width: "100%", height: 'auto' }}>
-                <div className="Banner" >
-                    <img src={require('../images/banner1.png')} />
-                    <p>Mejoramos y fortalecemos tus sistemas de gestión
-                    </p>
-                </div>
-            </div><div style={{ width: "100%", height: 'auto' }}>
-                <div className="Banner" >
-                    <img src={require('../images/banner2.png')} />
-                    <p>Prevenimos riesgos y accidentes en tu empresa
-                    </p>
-                </div>
-            </div><div style={{ width: "100%", height: 'auto' }}>
-                <div className="Banner" >
-                    <img src={require('../images/banner3.png')} />
-                    <p>Creamos ambientes seguros y exitosos
-                    </p>
-                </div>
-            </div>
+            }
         </Slider>
     );
 }
