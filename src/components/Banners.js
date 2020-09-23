@@ -5,12 +5,12 @@ import Slider from "react-slick";
 
 const Banners = () => {
 
-    const banners = useSelector((state) => state.banners.banners)
-    const dispatch = useDispatch()
+    // const banners = useSelector((state) => state.banners.banners)
+    // const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getBanners());
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getBanners());
+    // }, [])
 
     const settings = {
         dots: true,

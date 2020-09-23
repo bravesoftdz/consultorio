@@ -7,12 +7,12 @@ import Presentation from './Presentation';
 
 const Services = () => {
 
-    const clients = useSelector((state) => state.clients.clients)
-    const dispatch = useDispatch()
+    // const clients = useSelector((state) => state.clients.clients)
+    // const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getClients());
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getClients());
+    // }, [])
 
     const settingsClients = {
         dots: false,
