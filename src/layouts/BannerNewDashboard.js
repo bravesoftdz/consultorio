@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { createBanner } from '../redux/actions/banner'
@@ -6,8 +6,11 @@ import { setAlert } from '../redux/actions/alert'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Alert from '../components/Alert'
+import $ from 'jquery'
 
 const BannerNewDashboard = () => {
+
+    const root = "http://api.consultorioempresarial.pe"
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -15,8 +18,37 @@ const BannerNewDashboard = () => {
     const [submitingPost, setSubmitingPost] = useState(false)
     const [imageUrl, setImageUrl] = useState('')
     const [banner, setBanner] = useState({
-        title: ''
+        title: '',
+        image: ''
     })
+
+    useEffect(() => {
+        $('#profile-image').change(function (e) {
+            addImage(e);
+        });
+        function addImage(e) {
+            try {
+                var file = e.target.files[0],
+                    imageType = /image.*/;
+                if (file) {
+                    if (!file.type.match(imageType))
+                        return;
+                }
+
+                var reader = new FileReader();
+                reader.onload = fileOnload;
+                reader.readAsDataURL(file);
+
+            } catch (error) {
+                console.log("Error recuperar imagen");
+            }
+
+            function fileOnload(e) {
+                var result = e.target.result;
+                $('#imgPerfil').attr("src", result);
+            }
+        }
+    }, [])
 
     const handleChange = (e) => {
         setBanner({
@@ -25,48 +57,22 @@ const BannerNewDashboard = () => {
         })
     }
 
-    const handleImageSelected = async (e) => {
-
-        let token = localStorage.getItem('token')
-
-        try {
-            let formData = new FormData()
-            setUploadingImage(true)
-            const file = e.target.files[0];
-        
-            const config = {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': 'Bearer ' + token
-                }
-            }
-
-            formData.append('image',file)
-            
-            const { data } = await axios.post('/upload', formData, config)
-            console.log(data)
-            setUploadingImage(false)
-            setImageUrl(data)
-        } catch (error) {
-            setUploadingImage(false)
-            console.log(error)
-        }
+    const fileSelectedHandler = event => {
+        let file = event.target.files[0]
+        console.log(file)
+        setBanner({
+            ...banner,
+            image: file
+        })
     }
-
-    console.log(imageUrl)
 
     const bannerSubmit = async (e) => {
 
         e.preventDefault();
-        console.log('hola')
 
-        const { title } = banner
+        const { title, image } = banner
+
         if (submitingPost) {
-            return
-        }
-
-        if (uploadingImage) {
-            console.log('La imagen esta cargando')
             return
         }
 
@@ -76,18 +82,16 @@ const BannerNewDashboard = () => {
         }
 
 
-        if (!imageUrl) {
+        if (!image) {
             dispatch(setAlert('Debes agregar una imagen para tu banner', 'danger', 5000))
             return
         }
 
-        let formData = new FormData()
-
         try {
             setSubmitingPost(true)
-            
-            formData.append('title',title);
-            formData.append('image',imageUrl)
+
+            let formData = new FormData()
+            formData.append('image', image, title)
 
             await dispatch(createBanner(formData))
             setSubmitingPost(false)
@@ -104,17 +108,16 @@ const BannerNewDashboard = () => {
     return (
         <div className="new-banner ">
             <div className="header-banner">
-            <p>Agrega un nuevo banner</p>
-            <Link to="" className="btn-new" onClick={goBack}>Volver</Link>
+                <p>Agrega un nuevo banner</p>
+                <Link to="" className="btn-new" onClick={goBack}>Volver</Link>
             </div>
             <Alert />
             <div className="container-new_banner">
                 <div className="input">
                     <input type="text" onChange={handleChange} placeholder="Titulo del banner" name="title" id="" />
                 </div>
-                <div className="input img-product">
-                    <ImageUpload uploadingImage={uploadingImage} imageUrl={imageUrl} handleImageSelected={handleImageSelected} />
-                </div>
+                <img style={{width:"450px"}} id="imgPerfil" src={imageUrl || require('../images/uploadimage.jpg')} alt="img" />
+                <input type="file" name="image" id="profile-image" accept="image/*" onChange={fileSelectedHandler} />
                 <div className="btn-save">
                     <button onClick={bannerSubmit}>Guardar</button>
                 </div>
@@ -124,36 +127,3 @@ const BannerNewDashboard = () => {
 }
 
 export default BannerNewDashboard;
-
-const ImageUpload = ({ uploadingImage, imageUrl, handleImageSelected }) => {
-    if (uploadingImage) {
-        return (
-            <>
-                <p>Cargando</p>
-                <div className="thumbail">
-                    <img src={require('../images/loading.gif')} alt="imagen" />
-                </div>
-            </>
-        )
-    } else if (imageUrl) {
-        return (
-            <>
-                <label>Cambia de imagen</label>
-                <div className="thumbail">
-                    <img src={imageUrl} alt="imagen" />
-                    <input type="file" onChange={handleImageSelected} className="hidden" name="image" />
-                </div>
-            </>
-        )
-    } else {
-        return (
-            <>
-                <label>Elije una imagen</label>
-                <div className="thumbail">
-                    <img src={require('../images/upload.jpg')} alt="imagen" />
-                    <input type="file" onChange={handleImageSelected} className="hidden" name="image" />
-                </div>
-            </>
-        )
-    }
-}

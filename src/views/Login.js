@@ -9,6 +9,7 @@ import Alert from '../components/Alert';
 const Login = () => {
 
     const auth = useSelector((state) => state.auth.isAuthenticated)
+    const token = useSelector(state => state.auth.token)
     const dispatch = useDispatch()
 
     const [formData, setFormData] = useState({
@@ -56,7 +57,7 @@ const Login = () => {
     }, [])
 
     // Redirecciona al home si ya esta autenticado
-    if (auth) {
+    if (auth && (localStorage.getItem('token') === token)) {
         return <Redirect to="/dashboard" />
     }
 

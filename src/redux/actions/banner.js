@@ -3,6 +3,7 @@ import { GET_BANNERS, GET_BANNERS_ERROR, ADD_BANNER, DELETE_BANNER,UPDATE_BANNER
 import axios from 'axios'
 
 let token = localStorage.getItem('token')
+const root = "http://api.consultorioempresarial.pe"
 
 const config = {
     headers: { 
@@ -13,7 +14,7 @@ const config = {
 
 export const getBanners = () => async dispatch => {
     try {
-        const res = await axios.get('/api/banners')
+        const res = await axios.get(`${root}/api/banners`)
         dispatch({
             type: GET_BANNERS,
             payload: res.data
@@ -27,7 +28,13 @@ export const getBanners = () => async dispatch => {
 
 export const createBanner = (data) => async dispatch => {
     try {
-        const res = await axios.post(`/api/banners/`, data, config);
+        const configForm = {
+            headers: { 
+                "Content-Type": "multipart/form-data",
+            }
+        }
+        const res = await axios.post(`${root}/api/banners/upload`, data, configForm);
+        console.log(res)
         dispatch({
             type: ADD_BANNER,
             payload: res.data
@@ -39,7 +46,7 @@ export const createBanner = (data) => async dispatch => {
 
 export const editBanner = (id, banner) => async dispatch => {
     try {
-        const res = await axios.put(`/api/banners/${id}`, banner, config);
+        const res = await axios.put(`${root}/api/banners/${id}`, banner, config);
         dispatch({
             type: UPDATE_BANNER,
             payload: res.data
@@ -51,7 +58,7 @@ export const editBanner = (id, banner) => async dispatch => {
 
 export const deleteBanner = (id) => async dispatch => {
     try {
-        const res = await axios.delete(`/api/banners/${id}`,config);
+        const res = await axios.delete(`${root}/api/banners/${id}`,config);
         dispatch({
             type: DELETE_BANNER,
             payload: id

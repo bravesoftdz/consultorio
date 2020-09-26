@@ -49,14 +49,13 @@ const ClientDashboard = () => {
                 {
                     clients && clients.length > 0 ? 
                     clients.map(client => (
-                        <div className="client-item" key={client.id} style={{background: stc("pink"), borderRadius: "4px"} }>
-                            <img src={client.image} alt="imagen cliente" style={{width: "60%", objectFit: "contain"}}/>
+                        <div className="client-item" key={client.id} style={{background: "#fff", borderRadius: "4px"} }>
+                            <img src={client.image} alt="imagen cliente"/>
                             <p>{client.title}</p>
                             <button className="delete-client" onClick={()=>deleteClients(client.id)}><i className="fas fa-trash"></i></button>
-                            <Link to={`/dashboard/clientes/editar/${client.id}`} className="edit-client"><i className="fas fa-pen"></i></Link>
                         </div>
                     )) : 
-                    <p>Actualmente no tienes ningun cliente en tu sección de clientes, dale click agregar cliente para agregar un cliente</p>
+                    <img src={require('../images/retratos.png')} alt="imagen del banner" />
                 }
             </div>
         </div>

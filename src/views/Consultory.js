@@ -6,11 +6,10 @@ import Summary from '../components/Summary';
 const consultory = [
     {
         "_id": "0",
-        "text": "Asesorías y consultorías en gestión de establecimientos de salud públicos y privados"
-    },
+        "text": "Asesorías y consultorías en gestión de establecimientos de salud públicos y privados",    },
     {
         "_id": "1",
-        "text": "Asesorías y consultorías en gestión de establecimientos de salud públicos y privados"
+        "text": "Sistemas de gestión en seguridad y salud en el trabajo"
     },
 ]
 

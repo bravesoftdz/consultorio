@@ -8,10 +8,8 @@ import '../styles/dashboard.css'
 // layouts
 import BannerDashboard from '../layouts/BannerDashboard'
 import BannerNewDashboard from '../layouts/BannerNewDashboard'
-import BannerEditDashboard from '../layouts/BannerEditDashboard'
 import ClientDashboard from '../layouts/ClientDashboard'
 import ClientNewDashboard from '../layouts/ClientNewDashboard'
-import ClientEditDashboard from '../layouts/ClientEditDashboard'
 import Dashboards from '../layouts/Dashboard'
 
 const Dashboard = () => {
@@ -75,10 +73,8 @@ const Dashboard = () => {
                         <Route exact path="/dashboard" component={Dashboards} />
                         <Route exact path="/dashboard/banners" component={BannerDashboard} />
                         <Route exact path="/dashboard/banners/nuevo" component={BannerNewDashboard} />
-                        <Route exact path="/dashboard/banners/editar/:id" component={BannerEditDashboard} />
                         <Route exact path="/dashboard/clientes" component={ClientDashboard} />
                         <Route exact path="/dashboard/clientes/nuevo" component={ClientNewDashboard} />
-                        <Route exact path="/dashboard/clientes/editar/:id" component={ClientEditDashboard} />
                     </div>
                 </div>
             </div>

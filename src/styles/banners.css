@@ -33,10 +33,15 @@
     font-size: 20px;
 }
 
-.banner-item img, .client-item img {
+.banner-item img {
     object-fit: cover;
     width : 100%;
     height: 300px;
+    border-radius: 20px;
+}
+
+.client-item img {
+    width : 100%;
     border-radius: 20px;
 }
 
@@ -109,7 +114,7 @@
 
 .delete-banner, .edit-banner , .delete-client , .edit-client{
     position: absolute;
-    right: 30px;
+    right: 10px;
     top: 10px;
     color: #fff;
     opacity: 0;

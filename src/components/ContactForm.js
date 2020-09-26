@@ -37,11 +37,18 @@ const ContactForm = () => {
 
     return (
         <>
-            <div className="Container" style={{ alignItems: "center", marginBottom: "120px" }}>
-                <div className="Img__Form" style={{ position: "relative" }}>
+            <div className="Bg__Services Container" style={{ marginBottom: "60px", paddingTop:"0px" }} id="contact" >
+                <h1 style={{ top: "450px" }}>Contacto</h1>
+            </div>
+            <div className="Container" style={{ alignItems: "center", marginBottom: "70px" }}>
+                <div className="Img__Form wow animate__animated animate__fadeInLeft"
+                            data-wow-duration="4s"
+                            data-wow-delay="0.1s" style={{ position: "relative" }}>
                     <img src={require('../images/contact.png')} alt="" />
                 </div>
-                <div className="Form">
+                <div className="Form wow animate__animated animate__fadeInUp"
+                            data-wow-duration="4s"
+                            data-wow-delay="0.1s">
                     <div className="Container__Contact">
                         <h2>Contáctanos</h2>
                         <form onSubmit={handleSubmit(sendMessage)}>
@@ -117,8 +124,8 @@ const ContactForm = () => {
                             <span className="text-danger text-small d-block mb-2">
                                 {errors.message && errors.message.message}
                             </span>
-                            <div className="" style={{position: "relative"}}>
-                             <Alert />
+                            <div className="" style={{ position: "relative" }}>
+                                <Alert />
                             </div>
                             <div className="btn-sendGmail">
                                 <button type="submit">Enviar</button>

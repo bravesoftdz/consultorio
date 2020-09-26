@@ -2,6 +2,8 @@ import { SIGNUP_ERROR,SIGNUP_SUCCESS, SIGNIN_SUCCESS, SIGNIN_ERROR, AUTH_SUCCESS
 import { setAlert } from './alert'
 import axios from 'axios'
 
+const root = "http://api.consultorioempresarial.pe"
+
 export const authMe = () => async dispatch => {
 
     let token = localStorage.getItem('token')
@@ -14,12 +16,14 @@ export const authMe = () => async dispatch => {
     }
 
     try {
-        const res = await axios.get('/api/users/me', config)
+        const res = await axios.get(`${root}/api/users/me`, config)
+        console.log("SUCCESS",res)
         dispatch({
             type: AUTH_SUCCESS,
             payload: res.data
         })
     } catch (error) {
+        console.log("ERROR",error)
         dispatch({
             type: AUTH_ERROR,
         })
@@ -32,7 +36,7 @@ export const signin = (data) => async dispatch => {
     }
 
     try {
-        const res = await axios.post('/api/users/login',data,config)
+        const res = await axios.post(`${root}/api/users/login`,data,config)
         dispatch({
             type: SIGNIN_SUCCESS,
             payload: res.data                                                                                                                                                                                                                                                                                          
@@ -56,7 +60,7 @@ export const signup = (data) => async dispatch => {
     }
 
     try {
-        const res = await axios.post('/api/users/signup',data,config)
+        const res = await axios.post(`${root}/api/users/signup`,data,config)
         dispatch({
             type: SIGNUP_SUCCESS,
             payload: res.data

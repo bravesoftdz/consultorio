@@ -51,8 +51,8 @@ const Footer = () => {
                    </div>
                 </div>
                 <div className="Socials__Footer">
-                    <i className="fab fa-facebook-f"></i>
-                    <i className="fab fa-linkedin-in"></i>
+                    <a target="_blank" href="https://www.facebook.com/consultorioempresarialpe"><i className="fab fa-facebook-f"></i></a>
+                    <a target="_blank" href="https://www.linkedin.com/company/consultorioempresarial/"><i className="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>

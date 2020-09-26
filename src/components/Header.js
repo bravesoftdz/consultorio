@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { Link as LinkRouter, useHistory, withRouter } from 'react-router-dom'
+import { Link } from 'react-scroll'
 
-const Header = () => {
+const Header = ({ location }) => {
+
+    let path = location.pathname
 
     const isAuth = useSelector((state) => state.auth.isAuthenticated)
     const history = useHistory();
 
     useEffect(() => {
+        let header = document.querySelector(".header-scroll");
         var nav = document.querySelector(".Mobile")
         var hamburger = document.querySelector(".hamburger")
         hamburger.addEventListener('click', function () {
@@ -62,90 +66,128 @@ const Header = () => {
                 target.style.top = `${top}px`;
             }
         }
+
+        function mostrarHeaderScroll() {
+            let scroll = document.documentElement.scrollTop
+            if (header) {
+                if (scroll >= 125) {
+                    header.classList.add('scroll');
+                } else {
+                    header.classList.remove('scroll');
+                }
+            }
+        }
+        window.addEventListener('scroll', mostrarHeaderScroll);
+
     }, [])
-
-    const goBannerAdmin = () => {
-        history.push('/dashboard')
-    }
-
-    const goContact = () => {
-        history.push('/contacto')
-    }
-
-    const goServices = () => {
-        history.push('/servicios')
-    }
-
-    const goAbout = () => {
-        history.push('/')
-    }
 
     const goHome = () => {
         history.push('/')
     }
 
+    const goDashboard = () => {
+        history.push('/dashboard')
+    }
 
     return (
-        <div className="Header">
-            <div className="Container__Full">
-                <div className="Logo">
-                    <img src={require('../images/logo.png')} alt="" />
-                </div>
-                <button class="hamburger hamburger--collapse" type="button">
-                    <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
-                    </span>
-                </button>
-                <span class="target"></span>
-                {
-                    isAuth ?
-                        <div className="Nav Mobile" style={{ justifyContent: "flex-end" }}>
-                            <ul className="Nav__Link" style={{ marginTop: "0px" }}>
-                                <li className="Nav__Item">
-                                    <Link onClick={goHome} to="/">home</Link>
-                                </li>
-                                <li className="Nav__Item">
-                                    <Link onClick={goAbout} to="/">quiénes somos</Link>
-                                </li>
-                                <li className="Nav__Item">
-                                    <Link onClick={goServices} to="/servicios">beneficios para tu empresa</Link>
-                                </li>
-                                <li className="Nav__Item">
-                                    <Link onClick={goServices} to="/servicios">servicios</Link>
-                                </li>
-                                <li className="Nav__Item">
-                                    <Link onClick={goContact} to="/contacto">contacto</Link>
-                                </li>
-                                <li className="Nav__Item">
-                                    <Link onClick={goBannerAdmin} to="/banners">admin</Link>
-                                </li>
-                            </ul>
+        <Fragment>
+            {
+                path === "/" ?
+                    <div className="Header header-scroll">
+                        <div className="Container__Full">
+                            <div className="Logo">
+                                <LinkRouter to="/"><img src={require('../images/logo.png')} alt="imagen del logo" /></LinkRouter>
+                            </div>
+                            <button class="hamburger hamburger--collapse" type="button">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                            <span class="target"></span>
+                            {
+                                isAuth ?
+                                    <div className="Nav Mobile" style={{ justifyContent: "flex-end" }}>
+                                        <ul className="Nav__Link" style={{ marginTop: "0px" }}>
+                                            <li className="Nav__Item">
+                                                <Link smooth={true} duration={1000} to="home">home</Link>
+                                            </li>
+                                            <li className="Nav__Item">
+                                                <Link smooth={true} duration={1000} to="about">quiénes somos</Link>
+                                            </li>
+                                            <li className="Nav__Item">
+                                                <Link smooth={true} duration={1000} to="services">servicios</Link>
+                                            </li>
+                                            <li className="Nav__Item">
+                                                <Link smooth={true} duration={1000} to="benefeces">beneficios para tu empresa</Link>
+                                            </li>
+                                            <li className="Nav__Item">
+                                                <Link smooth={true} duration={1000} to="contact">contacto</Link>
+                                            </li>
+                                            <li className="Nav__Item">
+                                                <LinkRouter onClick={goDashboard} to="/dashboard">admin</LinkRouter>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    :
+                                    <div className="Nav Mobile" style={{ justifyContent: "flex-end" }}>
+                                        <ul className="Nav__Link" style={{ marginTop: "0px" }}>
+                                            <li className="Nav__Item">
+                                                <Link smooth={true} duration={1000} to="home">home</Link>
+                                            </li>
+                                            <li className="Nav__Item">
+                                                <Link smooth={true} duration={1000} to="about">quiénes somos</Link>
+                                            </li>
+                                            <li className="Nav__Item">
+                                                <Link smooth={true} duration={1000} to="services">servicios</Link>
+                                            </li>
+                                            <li className="Nav__Item">
+                                                <Link smooth={true} duration={1000} to="benefeces">beneficios para tu empresa</Link>
+                                            </li>
+                                            <li className="Nav__Item">
+                                                <Link smooth={true} duration={1000} to="contact">contacto</Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                            }
                         </div>
-                        :
-                        <div className="Nav Mobile" style={{ justifyContent: "flex-end" }}>
-                            <ul className="Nav__Link" style={{ marginTop: "0px" }}>
-                            <li className="Nav__Item">
-                                    <Link onClick={goHome} to="/">home</Link>
-                                </li>
-                                <li className="Nav__Item">
-                                    <Link onClick={goAbout} to="/">quiénes somos</Link>
-                                </li>
-                                <li className="Nav__Item">
-                                    <Link onClick={goServices} to="/servicios">beneficios para tu empresa</Link>
-                                </li>
-                                <li className="Nav__Item">
-                                    <Link onClick={goServices} to="/servicios">servicios</Link>
-                                </li>
-                                <li className="Nav__Item">
-                                    <Link onClick={goContact} to="/contacto">contacto</Link>
-                                </li>
-                            </ul>
+                    </div> :
+                    <div className="Header header-scroll">
+                        <div className="Container__Full">
+                            <div className="Logo">
+                                <LinkRouter to="/"><img src={require('../images/logo.png')} alt="imagen del logo" /></LinkRouter>
+                            </div>
+                            <button class="hamburger hamburger--collapse" type="button">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                            <span class="target"></span>
+                            {
+                                isAuth ?
+                                    <div className="Nav Mobile" style={{ justifyContent: "flex-end" }}>
+                                        <ul className="Nav__Link" style={{ marginTop: "0px" }}>
+                                            <li className="Nav__Item">
+                                                <LinkRouter to="/">home</LinkRouter>
+                                            </li>
+                                            <li className="Nav__Item">
+                                                <LinkRouter to="/dashboard">admin</LinkRouter>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    :
+                                    <div className="Nav Mobile" style={{ justifyContent: "flex-end" }}>
+                                        <ul className="Nav__Link" style={{ marginTop: "0px" }}>
+                                            <li className="Nav__Item">
+                                                <LinkRouter onClick={goHome} to="/">home</LinkRouter>
+                                            </li>
+                                        </ul>
+                                    </div>
+                            }
                         </div>
-                }
-
-            </div>
-        </div>
+                    </div>
+            }
+        </Fragment>
     );
 }
 
-export default Header;
+export default withRouter(Header);

@@ -18,8 +18,9 @@ const Banners = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        speed: 1000,
-        autoplaySpeed: 2000,
+        speed: 1500,
+        fade: true,
+        autoplaySpeed: 3000,
         cssEase: "linear",
     };
 
@@ -30,7 +31,9 @@ const Banners = () => {
                     <div style={{ width: "100%", height: 'auto' }} key={banner._id}>
                         <div className="Banner" >
                             <img src={banner.image} alt="imagen" />
-                            <p>{banner.title}</p>
+                            <p className="wow animate__animated animate__fadeInUp"
+                                data-wow-duration="2s"
+                                data-wow-delay="0.1">{banner.title}</p>
                         </div>
                     </div>
                 ))

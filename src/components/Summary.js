@@ -17,7 +17,7 @@ const Summary = ({ title, cssFz, subTitle, presentation, company, health, consul
             }}>
                 {presentation && <Presentation title={title} cssFz={cssFz} />}
             </section>
-            <h2 style={{ textAlign: "center", fontSize: "30px", marginBottom: "50px" }}>{subTitle}</h2>
+            <h2 style={{ marginTop:"50px", textAlign: "center", fontSize: "30px", marginBottom: "50px" }}>{subTitle}</h2>
             <div className={`Summary Container-S ${cssContact}`}>
                 <div className="Pdf__Container Square">
                     <div className="Pdf">
@@ -79,7 +79,7 @@ const Summary = ({ title, cssFz, subTitle, presentation, company, health, consul
                                             
                                         </div>
                                         <div className="Pdf__Link">
-                                                <p>pdf</p>
+                                                <a download href={tr.pdf}>pdf</a>
                                             </div>
                                     </div>
                                 )) : ''

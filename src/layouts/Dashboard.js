@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { getBanners } from '../redux/actions/banner'
 import { getClients } from '../redux/actions/client'
-import stc from 'string-to-color'
 import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
@@ -20,7 +19,9 @@ const Dashboard = () => {
         <>
         <div className="BannerDashboard">
             <div className="header-banner">
-                <p>Su galería de imagenes para el banner</p>
+            {banners && banners.length > 0 ? <p>Su galería de banners</p>
+            : <p>No se encontro banners en su pagina de inicio</p>    
+        }
                 <Link to="/dashboard/banners/nuevo">Agregar banner</Link>
             </div>
             <div className="container-gallery_banner">
@@ -32,25 +33,27 @@ const Dashboard = () => {
                             <p>{banner.title}</p>
                         </div>
                     )) : 
-                    <p>Actualmente no tienes ningun banner en tu pagina de inicio, dale click agregar banner para agregar tu primer banner</p>
+                    <img src={require('../images/deslizador.png')} alt="imagen del banner" />
                 }
             </div>
         </div>
         <div className="ClientDashboard" style={{marginTop: "40px"}}>
         <div className="header-client">
-            <p>Su galería de imagenes para sus clientes</p>
+            {clients && clients.length > 0 ? <p>Su galería de imagenes para sus clientes</p>
+            : <p>No se encontro clientes en su pagina de servicios</p>    
+        }
             <Link to="/dashboard/clientes/nuevo">Agregar cliente</Link>
         </div>
         <div className="container-gallery_client">
             {
                 clients && clients.length > 0 ? 
                 clients.map(client => (
-                    <div className="client-item" key={client.id} style={{background: stc("yellow"), borderRadius: "4px"} }>
-                        <img src={client.image} alt="imagen cliente" style={{width: "60%", objectFit: "contain"}}/>
+                    <div className="client-item" key={client.id} style={{background: "#fff", borderRadius: "4px"} }>
+                        <img src={client.image} alt="imagen cliente" style={{width: "100%", objectFit: "contain"}}/>
                         <p>{client.title}</p>
                     </div>
                 )) : 
-                <p>Actualmente no tienes ningun cliente en tu sección de clientes, dale click agregar cliente para agregar un cliente</p>
+                <img src={require('../images/retratos.png')} alt="imagen del banner" />
             }
         </div>
     </div>

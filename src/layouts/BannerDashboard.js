@@ -6,6 +6,7 @@ import '../styles/banners.css'
 
 const BannerDashboard = () => {
 
+
     const banners = useSelector((state) => state.banners.banners)
     const dispatch = useDispatch()
 
@@ -41,7 +42,9 @@ const BannerDashboard = () => {
     return ( 
         <div className="BannerDashboard">
             <div className="header-banner">
-                <p>Su galería de imagenes para el banner</p>
+            {banners && banners.length > 0 ? <p>Su galería de banners</p>
+            : <p>Actualmente no se tienes banners en su pagina de inicio</p>    
+        }
                 <Link to="/dashboard/banners/nuevo">Agregar banner</Link>
             </div>
             <div className="container-gallery_banner">
@@ -52,10 +55,9 @@ const BannerDashboard = () => {
                             <img src={banner.image} alt=""/>
                             <p>{banner.title}</p>
                             <button className="delete-banner" onClick={()=>deleteBanners(banner.id)}><i className="fas fa-trash"></i></button>
-                            <Link to={`/dashboard/banners/editar/${banner.id}`} className="edit-banner"><i className="fas fa-pen"></i></Link>
                         </div>
                     )) : 
-                    <p>Actualmente no tienes ningun banner en tu pagina de inicio, dale click agregar banner para agregar tu primer banner</p>
+                    <img src={require('../images/deslizador.png')} alt="imagen del banner" />
                 }
             </div>
         </div>
