@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "hamburgers/dist/hamburgers.min.css"
 import "jquery/dist/jquery.min.js"
+import 'aos/dist/aos.css'
+import 'aos/dist/aos.js'
 
 ReactDOM.render(
   <React.StrictMode>

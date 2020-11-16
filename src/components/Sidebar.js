@@ -1,10 +1,8 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logo from '../images/logo.png'
 
 const Sidebar = () => {
-
-    const history = useHistory();
 
     const logout = () => {
         localStorage.removeItem('token');
@@ -28,7 +26,7 @@ const Sidebar = () => {
                         </li>
                         <li>
                             <Link to="/dashboard">
-                                <i class="fas fa-tachometer-alt"></i>
+                                <i className="fas fa-tachometer-alt"></i>
                                 <span>Administrador</span>
                             </Link>
                         </li>

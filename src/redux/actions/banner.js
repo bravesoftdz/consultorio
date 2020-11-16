@@ -58,7 +58,7 @@ export const editBanner = (id, banner) => async dispatch => {
 
 export const deleteBanner = (id) => async dispatch => {
     try {
-        const res = await axios.delete(`${root}/api/banners/${id}`,config);
+        await axios.delete(`${root}/api/banners/${id}`,config);
         dispatch({
             type: DELETE_BANNER,
             payload: id

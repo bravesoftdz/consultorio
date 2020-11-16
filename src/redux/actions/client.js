@@ -57,7 +57,7 @@ export const editClient = (id, banner) => async dispatch => {
 
 export const deleteClient = (id) => async dispatch => {
     try {
-        const res = await axios.delete(`${root}/api/clients/${id}`,config);
+        await axios.delete(`${root}/api/clients/${id}`,config);
         dispatch({
             type: DELETE_CLIENT,
             payload: id

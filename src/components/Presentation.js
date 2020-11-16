@@ -1,11 +1,15 @@
 import React from 'react'
 
-const Presentation = ({title, cssFz}) => {
+const Presentation = ({ title, cssFz, image, top }) => {
     return (
-        <div className={`Bg__Services Container ${cssFz}`} >
-            <h1 className=" wow animate__animated animate__fadeIn"
-                            data-wow-duration="2s"
-                            data-wow-delay="0.1s" style={{top: "150px"}}>{title}</h1>
+        <div className={`Bg__Services Container ${cssFz}`}>
+            <div className="fbc">
+            <h1 data-aos="fade-right" className={`${top}`}>{title}</h1>
+            {
+                image ? 
+                <img src={image} alt="imagen de presentación"/> : ''
+            }
+            </div>
         </div>
     );
 }

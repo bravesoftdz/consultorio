@@ -1,32 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import { setAlert } from '../redux/actions/alert'
 import { useForm } from 'react-hook-form'
 import Alert from './Alert';
+import { useState } from 'react';
+import ModalSend from '../components/ModalSend'
 
 const ContactForm = () => {
 
     const dispatch = useDispatch()
 
+    const root = "http://api.consultorioempresarial.pe"
+
     const { register, handleSubmit, errors } = useForm()
+
+    const [send, setSend] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+
+    const handleShowModal = () => {
+        setShowModal(true)
+    }
+
+    const closeModal = () => {
+        setShowModal(false)
+    }
 
     const sendMessage = async (body, e) => {
         e.preventDefault();
-
-        console.log(body)
-
         try {
             const config = {
                 headers: {
                     'Content-Type': 'application/json',
                 }
             }
-
-            const { data } = await axios.post('/api/gmail', body, config)
-            e.target.reset();
+            setSend(true)
+            const { data } = await axios.post(`${root}/api/gmail`, body, config)
             if (data === "Success") {
-                dispatch(setAlert('Se ha enviado el mensaje, gracias por contactarnos !', 'success', 5000))
+                setShowModal(true)
+                e.target.reset();
+                setSend(false)
                 return
             }
         } catch (error) {
@@ -38,18 +50,14 @@ const ContactForm = () => {
     return (
         <>
             <div className="Bg__Services Container" style={{ marginBottom: "60px", paddingTop:"0px" }} id="contact" >
-                <h1 style={{ top: "450px" }}>Contacto</h1>
+                <h1 data-aos="fade-up" style={{ top: "450px" }}>Contacto</h1>
             </div>
-            <div className="Container" style={{ alignItems: "center", marginBottom: "70px" }}>
-                <div className="Img__Form wow animate__animated animate__fadeInLeft"
-                            data-wow-duration="4s"
-                            data-wow-delay="0.1s" style={{ position: "relative" }}>
-                    <img src={require('../images/contact.png')} alt="" />
+            <div className="Container" style={{ alignItems: "center", marginBottom: "20px" }}>
+                <div data-aos="fade-up" className="Img__Form" style={{ position: "relative" }}>
+                    <img src={require('../images/contact.webp')} alt="" />
                 </div>
-                <div className="Form wow animate__animated animate__fadeInUp"
-                            data-wow-duration="4s"
-                            data-wow-delay="0.1s">
-                    <div className="Container__Contact">
+                <div className="Form">
+                    <div data-aos="fade-up" className="Container__Contact">
                         <h2>Contáctanos</h2>
                         <form onSubmit={handleSubmit(sendMessage)}>
                             <div className="input">
@@ -128,12 +136,13 @@ const ContactForm = () => {
                                 <Alert />
                             </div>
                             <div className="btn-sendGmail">
-                                <button type="submit">Enviar</button>
+                                <button type="submit">{send === true ? `Enviando espere...` : `Enviar`}</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            { showModal && <ModalSend closeModal={closeModal} /> }
         </>
     );
 }

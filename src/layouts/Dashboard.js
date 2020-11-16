@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { getBanners } from '../redux/actions/banner'
 import { getClients } from '../redux/actions/client'

@@ -9,7 +9,7 @@ const Alert = () => {
             {
                 alerts !== null && alerts.length > 0 ? alerts.map(alert => {
                         return (
-                            <div key={alert.id} className="error-auth" >
+                            <div key={alert.id} className="success" >
                                 {alert.msg}
                             </div>
                         )

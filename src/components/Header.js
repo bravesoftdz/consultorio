@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link as LinkRouter, useHistory, withRouter } from 'react-router-dom'
-import { Link } from 'react-scroll'
+import { Link, animateScroll as scroll } from 'react-scroll'
 
 const Header = ({ location }) => {
 
@@ -9,6 +9,10 @@ const Header = ({ location }) => {
 
     const isAuth = useSelector((state) => state.auth.isAuthenticated)
     const history = useHistory();
+
+    const subir = () => {
+        scroll.scrollToBottom(1000)
+    }
 
     useEffect(() => {
         let header = document.querySelector(".header-scroll");
@@ -78,7 +82,6 @@ const Header = ({ location }) => {
             }
         }
         window.addEventListener('scroll', mostrarHeaderScroll);
-
     }, [])
 
     const goHome = () => {
@@ -95,15 +98,21 @@ const Header = ({ location }) => {
                 path === "/" ?
                     <div className="Header header-scroll">
                         <div className="Container__Full">
-                            <div className="Logo">
-                                <LinkRouter to="/"><img src={require('../images/logo.png')} alt="imagen del logo" /></LinkRouter>
-                            </div>
-                            <button class="hamburger hamburger--collapse" type="button">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
+                            <LinkRouter to="/" style={{ textDecoration: "none" }}>
+                                <div className="Logo">
+                                    <img src={require('../images/logo.png')} alt="imagen del logo" />
+                                    <div className="logo-text">
+                                        <div>consultorio</div>
+                                        <div className="bold">empresarial</div>
+                                    </div>
+                                </div>
+                            </LinkRouter>
+                            <button className="hamburger hamburger--collapse" type="button">
+                                <span className="hamburger-box">
+                                    <span className="hamburger-inner"></span>
                                 </span>
                             </button>
-                            <span class="target"></span>
+                            <span className="target"></span>
                             {
                                 isAuth ?
                                     <div className="Nav Mobile" style={{ justifyContent: "flex-end" }}>
@@ -135,16 +144,16 @@ const Header = ({ location }) => {
                                                 <Link smooth={true} duration={1000} to="home">home</Link>
                                             </li>
                                             <li className="Nav__Item">
-                                                <Link smooth={true} duration={1000} to="about">quiénes somos</Link>
+                                                <Link smooth={true} duration={1000} offset={-40} to="about">quiénes somos</Link>
                                             </li>
                                             <li className="Nav__Item">
-                                                <Link smooth={true} duration={1000} to="services">servicios</Link>
+                                                <Link smooth={true} duration={1000} offset={-80} to="services">servicios</Link>
                                             </li>
                                             <li className="Nav__Item">
-                                                <Link smooth={true} duration={1000} to="benefeces">beneficios para tu empresa</Link>
+                                                <Link smooth={true} duration={1000} offset={-45} to="benefeces">beneficios para tu empresa</Link>
                                             </li>
                                             <li className="Nav__Item">
-                                                <Link smooth={true} duration={1000} to="contact">contacto</Link>
+                                                <Link smooth={true} duration={1000} offset={-80} to="contact">contacto</Link>
                                             </li>
                                         </ul>
                                     </div>
@@ -153,9 +162,15 @@ const Header = ({ location }) => {
                     </div> :
                     <div className="Header header-scroll">
                         <div className="Container__Full">
-                            <div className="Logo">
-                                <LinkRouter to="/"><img src={require('../images/logo.png')} alt="imagen del logo" /></LinkRouter>
-                            </div>
+                            <LinkRouter to="/" style={{ textDecoration: "none" }}>
+                                <div className="Logo">
+                                    <img src={require('../images/logo.png')} alt="imagen del logo" />
+                                    <div className="logo-text">
+                                        <div>consultorio</div>
+                                        <div className="bold">empresarial</div>
+                                    </div>
+                                </div>
+                            </LinkRouter>
                             <button class="hamburger hamburger--collapse" type="button">
                                 <span class="hamburger-box">
                                     <span class="hamburger-inner"></span>
@@ -167,7 +182,7 @@ const Header = ({ location }) => {
                                     <div className="Nav Mobile" style={{ justifyContent: "flex-end" }}>
                                         <ul className="Nav__Link" style={{ marginTop: "0px" }}>
                                             <li className="Nav__Item">
-                                                <LinkRouter to="/">home</LinkRouter>
+                                                <LinkRouter to="/">Ir al inicio</LinkRouter>
                                             </li>
                                             <li className="Nav__Item">
                                                 <LinkRouter to="/dashboard">admin</LinkRouter>
@@ -178,7 +193,7 @@ const Header = ({ location }) => {
                                     <div className="Nav Mobile" style={{ justifyContent: "flex-end" }}>
                                         <ul className="Nav__Link" style={{ marginTop: "0px" }}>
                                             <li className="Nav__Item">
-                                                <LinkRouter onClick={goHome} to="/">home</LinkRouter>
+                                                <LinkRouter onClick={goHome} to="/">Ir al inicio</LinkRouter>
                                             </li>
                                         </ul>
                                     </div>

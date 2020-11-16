@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { createBanner } from '../redux/actions/banner'
 import { setAlert } from '../redux/actions/alert'
@@ -10,11 +9,8 @@ import $ from 'jquery'
 
 const BannerNewDashboard = () => {
 
-    const root = "http://api.consultorioempresarial.pe"
-
     const dispatch = useDispatch();
     const history = useHistory();
-    const [uploadingImage, setUploadingImage] = useState(false)
     const [submitingPost, setSubmitingPost] = useState(false)
     const [imageUrl, setImageUrl] = useState('')
     const [banner, setBanner] = useState({

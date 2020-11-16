@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 const HeaderDashboard = () => {
 
     const user = useSelector((state => state.auth.user))
-    console.log(user)
+
     return (
         <nav className="Navbar">
             <div className="Navbar__Bar" id="content-buttons">

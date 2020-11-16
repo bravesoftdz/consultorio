@@ -2,7 +2,7 @@
     padding-top: 20px;
     margin: 0px auto;
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 50px;
     grid-template-columns: repeat(3,1fr);
 }
 
@@ -12,16 +12,23 @@
     align-items: center;
 }
 
+.header-banner p , .header-client p {
+    text-transform: uppercase;
+    font-size: 13px !important;
+    color: #4d4d4d;
+}
+
 .header-banner a, .header-client a {
     text-decoration: none;
     color: #fff;
-    background: #F6CF19;
+    background: #0DD789;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .banner-item, .client-item{
     position: relative;
+    height: 300px;
 }
 
 .banner-item p , .client-item p {
@@ -42,7 +49,10 @@
 
 .client-item img {
     width : 100%;
+    height: 100%;
+    padding: 70px;
     border-radius: 20px;
+    box-shadow: 0px 5px 7px 1px rgba(0,0,0,0.4);
 }
 
 .container-new_banner , .container-new_client {
@@ -59,7 +69,7 @@
     padding: 10px 15px;
     width: 600px;
     margin-bottom: 30px;
-    font-family: 'Nexa Bold';
+    font-family: 'Montserrat';
     outline: none;
 }
 
@@ -112,11 +122,10 @@
     outline: none;
 }
 
-.delete-banner, .edit-banner , .delete-client , .edit-client{
+.delete-banner , .delete-client {
     position: absolute;
     right: 10px;
     top: 10px;
-    color: #fff;
     opacity: 0;
     background: transparent;
     padding: 20px;
@@ -127,13 +136,14 @@
     transition: 0.5s;
 }
 
-.edit-banner, .edit-client {
-    right: 80px;
-}
-
-.delete-banner i, .edit-banner i , .delete-client i , .edit-client i {
+.delete-banner i {
     font-size: 20px;
     color: #fff;
+}
+
+.delete-client i {
+    font-size: 20px;
+    color: #F34F6B !important;
 }
 
 .banner-item:hover .delete-banner, .banner-item:hover .edit-banner, .client-item:hover .edit-client , .client-item:hover .delete-client {
@@ -146,11 +156,27 @@
     .container-gallery_banner, .container-gallery_client {
         grid-template-columns: repeat(2,1fr);
     }
+    .Clients__Slider .slick-next { 
+        right: 40px !important;
+    }
+    .Clients__Slider .slick-prev {
+        left: 16px !important;
+    }
 }
 
 @media only screen and (max-width: 1200px) {
     .Navbar__Bar i, .Navbar__Options i {
         margin-left: 13px;
+    }
+    .Clients__Slider {
+        overflow: hidden;
+    }
+
+    .Clients__Slider .slick-next { 
+        right: -240px !important;
+    }
+    .Clients__Slider .slick-prev {
+        left: -240px !important;
     }
 }
 
@@ -175,5 +201,8 @@
     }
     nav {
         padding: 10px 10px 10px 10px;
+    }
+    .Clients__Slider .slick-prev {
+        left: -140px !important;
     }
 }

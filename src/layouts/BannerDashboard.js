@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { getBanners, deleteBanner } from '../redux/actions/banner'
 import '../styles/banners.css'
 
@@ -8,6 +8,7 @@ const BannerDashboard = () => {
 
 
     const banners = useSelector((state) => state.banners.banners)
+    const history =  useHistory();
     const dispatch = useDispatch()
 
     const [deletingBanner, setDeletingBanner] = useState(false)
@@ -16,22 +17,21 @@ const BannerDashboard = () => {
         dispatch(getBanners());
     }, [])
 
-    console.log(banners)
-
-    const deleteBanners = async (id) => {
+    const deleteBanners = (id) => {
 
         if (deletingBanner) {
             return
         }
 
-        console.log(id)
-
         try {
             setDeletingBanner(true)
             let result = window.confirm("Estas seguro de eliminar este banner?, recuerda que tambien se borrará de tu pagina de inicio")
-            if(result == true) {
-                await dispatch(deleteBanner(id))
-                window.location.replace('/dashboard/banners')
+            if(result === true) {
+                dispatch(deleteBanner(id))
+                setTimeout(() => {
+                    dispatch(getBanners());
+                    history.push('/dashboard/banners');
+                }, 2000);
             }
             setDeletingBanner(false)
         } catch (error) {

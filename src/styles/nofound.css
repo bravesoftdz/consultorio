@@ -1,0 +1,47 @@
+.not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #151729;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Montserrat';
+}
+
+#container {
+    background-image: url('../images/404.png');
+    background-repeat: repeat;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-nf {
+    text-align: center;
+}
+
+.content-nf h2 {
+    font-size: 150px;
+}
+
+.content-nf {
+    color: #fff;
+    position: relative;
+    z-index: 1000;
+}
+
+.content-nf p {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.content-nf a {
+    background: #55F09D;
+    text-decoration: none;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+}

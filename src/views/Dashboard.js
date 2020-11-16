@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react'
 import Sidebar from '../components/Sidebar'
 import { useSelector } from 'react-redux'
 import HeaderDashboard from '../components/HeaderDashboard'
-import { Route, useHistory } from 'react-router-dom'
+import { Route, useHistory, withRouter } from 'react-router-dom'
 import '../styles/dashboard.css'
 
 // layouts
@@ -17,7 +17,6 @@ const Dashboard = () => {
     const auth = useSelector(state => state.auth.isAuthenticated);
     const token = useSelector(state => state.auth.token)
     const history = useHistory();
-    console.log(auth)
 
     useEffect(() => {
         const boton = document.getElementById('boton-sidebar')
@@ -70,11 +69,13 @@ const Dashboard = () => {
                 <div className="Main-panel">
                     <HeaderDashboard />
                     <div className="Content" id="main">
+                        
                         <Route exact path="/dashboard" component={Dashboards} />
                         <Route exact path="/dashboard/banners" component={BannerDashboard} />
                         <Route exact path="/dashboard/banners/nuevo" component={BannerNewDashboard} />
                         <Route exact path="/dashboard/clientes" component={ClientDashboard} />
                         <Route exact path="/dashboard/clientes/nuevo" component={ClientNewDashboard} />
+                        
                     </div>
                 </div>
             </div>
@@ -82,4 +83,4 @@ const Dashboard = () => {
     );
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);

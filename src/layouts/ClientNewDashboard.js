@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { createClient } from '../redux/actions/client'
 import { setAlert } from '../redux/actions/alert'
@@ -9,8 +8,6 @@ import Alert from '../components/Alert'
 import $ from 'jquery'
 
 const ClientNewDashboard = () => {
-
-    const root = "http://api.consultorioempresarial.pe"
 
     const dispatch = useDispatch();
     const isAuth = useSelector((state => state.auth.isAuthenticated))
